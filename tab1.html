@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .tab-list {
+            display: flex;
+            width: 500px;
+            height: 30px;
+            margin: 0 auto;
+            margin-top: 20px;
+            line-height: 30px;
+            background-color: antiquewhite;
+            list-style: none;
+        }
+        .tab-list .tab-list-item{
+            width: 25%;
+            background-color: cadetblue;
+            border-right:1px solid pink ;
+        }
+        .tab-list .tab-list-item:last-child{
+            border-right: 0;
+        }
+        .tab-list .tab-list-item.tab-list-item-selected{
+            background-color: red;
+        }
+        .content-list{
+            width: 500px;
+            height: 200px;
+            margin: 0 auto;
+            background-color: cyan;
+            list-style: none;
+        }
+        .content-list .content-list-item{
+            width: 500PX;
+            margin: 0 auto;
+            background-color: cyan;
+            display: none;
+        }
+        .content-list .content-list-item.content-list-item-selected{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul class="tab-list">
+            <li class="tab-list-item tab-list-item-selected">1</li>
+            <li class="tab-list-item">2</li>
+            <li class="tab-list-item">3</li>
+            <li class="tab-list-item">4</li>
+        </ul>
+        <ul class="content-list">
+            <li class="content-list-item content-list-item-selected">1</li>
+            <li class="content-list-item">2</li>
+            <li class="content-list-item">3</li>
+            <li class="content-list-item">4</li>
+        </ul>
+    </div>
+
+    <script>
+        let selected = 0;
+        const tabList1 = document.querySelector(".tab-list")
+        const tabListItem = document.querySelectorAll(".tab-list-item")
+        const contentList = document.querySelectorAll('.content-list-item')
+        tabList1.addEventListener("click",function(e) {
+            const i = Array.prototype.slice.call(tabListItem, 0).indexOf(e.target);
+            tabListItem[selected].classList.remove('tab-list-item-selected')
+            contentList[selected].classList.remove('content-list-item-selected')
+            tabListItem[i].classList.add('tab-list-item-selected')
+            contentList[i].classList.add('content-list-item-selected')
+            selected = i
+            console.log(e.target);
+        },false)
+        console.log(tabList1);
+        console.log('------');
+        // const tabList = document.querySelectorAll(".tab-list-item")
+        // const contentList = document.querySelectorAll('.content-list-item')
+        // function switchSelectList(i){
+        //     tabList[selected].classList.remove('tab-list-item-selected')
+        //     contentList[selected].classList.remove('content-list-item-selected')
+        //     this.classList.add('tab-list-item-selected')
+        //     contentList[i].classList.add('content-list-item-selected')
+        //     selected = i;
+        // }
+
+        // for(const i in Array.prototype.slice.call(tabList, 0)){
+        //     console.log(tabList);
+        //     tabList[i].addEventListener("click", function() {
+        //         switchSelectList.bind(this)(i);
+        //     }, false)
+        // }
+
+    </script>
+</body>
+</html>

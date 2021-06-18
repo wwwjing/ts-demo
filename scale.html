@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .myDiv{
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            background-color: pink;
+            /* transition: transform 2s linear; */
+            transition: width 2s ease-in;
+            
+        }
+        .myDiv:hover{
+            /* transform: scale(1.5); */
+            width: 300px;
+        }
+
+        .myDiv1{ 
+            width:100px;
+            height:100px;
+            background:red;
+            position:relative;
+            animation: mymove 5s linear 2s infinite normal none;
+        }
+        @keyframes mymove{
+            from{
+                left : 100px;
+            }
+            to{
+                left:500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="myDiv">
+        123
+    </div>
+
+    <div class="myDiv1">
+        222
+    </div>
+</body>
+</html>         

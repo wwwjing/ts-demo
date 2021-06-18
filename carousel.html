@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .slide{
+            width: 520px;
+            height: 280px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .slide-list{
+            display: flex;
+            width: 2080px;
+            height: 280px;
+            list-style: none;
+            transform: translateX(-520px);
+        }
+        .slide-list-transition {
+            transition: transform 1s;
+        }
+        .slide .left{
+            position: absolute;
+            top: 120px;
+            left: 0;
+            width: 18px;
+            height: 20px;
+            text-align: center;
+            size: 20px;
+            background-color:darkgrey;
+            z-index: 10;
+        }
+        .slide .right{
+            position:absolute;
+            right: 0;
+            top: 120px;
+            width: 18px;
+            height: 20px;
+            text-align: center;
+            size: 20px;
+            background-color: darkgrey;
+            z-index: 10;
+        }
+        .slide-list .slide-list-item{
+            width: 520px;
+            height: 280px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="slide"> 
+        <div class="left">&lt;</div>
+        <div class="right">&gt;</div>
+        <ul class="slide-list slide-list-transition">
+            <li class="slide-list-item"><img src="./img/4.jpeg"></li>
+            <li class="slide-list-item"><img src="./img/1.jpeg"></li>
+            <li class="slide-list-item"><img src="./img/2.jpeg"></li>
+            <li class="slide-list-item"><img src="./img/3.jpeg"></li>
+            <li class="slide-list-item"><img src="./img/4.jpeg"></li>
+            <li class="slide-list-item"><img src="./img/1.jpeg"></li>
+
+        </ul>
+      
+    </div>
+
+    <script>
+        let selected = 1;
+        let i = 1;
+        let index = 0;
+        const left = document.querySelector(".left")
+        const right = document.querySelector(".right")
+        const slidelist = document.querySelector(".slide-list");
+        const slidelistitem = document.querySelectorAll(".slide-list-item");
+
+
+        left.addEventListener("click",function(e){
+            if (!Array.from(slidelist.classList).includes('slide-list-transition')) {
+                slidelist.classList.add('slide-list-transition');
+            }
+            selected = selected > 0 ? selected - 1 : 4;
+            console.log(selected);
+            let x = `${-520*selected}px`;
+            console.log(x+'-----');
+            slidelist.style.transform = `translateX(${x})`;
+
+            if(selected === 0){
+                setTimeout(()=>{
+                    slidelist.classList.remove("slide-list-transition")
+                    slidelist.style.transform = `translateX(${-520*4}px)`
+                    selected = 4
+                }, 1000)
+            }
+        },false)
+        right.addEventListener("click",function(e){
+            if (!Array.from(slidelist.classList).includes('slide-list-transition')) {
+                slidelist.classList.add('slide-list-transition');
+            }
+            selected = selected < 5 ? selected + 1 : 0;
+            let x = `${-520*selected}px`;
+            slidelist.style.transform = `translateX(${x})`;
+            if(selected === 5){
+                setTimeout(() => {
+                    slidelist.classList.remove('slide-list-transition');
+                    slidelist.style.transform = `translateX(0)`;
+                    selected = 0;
+                }, 1000);
+            }
+        },false)       
+
+    </script>
+</body>
+</html>
